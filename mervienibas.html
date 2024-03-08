@@ -8,14 +8,67 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this
     <meta charset="UTF-8">
     <title>Mērvinības</title>
     <link href="css/stils.css" rel="stylesheet" type="text/css">
+    <style>
+body {
+  background-image: url("cipari.jpg");
+}
+    
+form {
+  background-color: rgb(220, 220, 0);
+  font-size: 20px;
+}
+.tablink:hover {
+  background-color: #777;
+}
+.tablink {
+  background-color: #555;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+  width: 25%;
+}
+#Home {background-color: red;}
+#News {background-color: green;}
+#Contact {background-color: blue;}
+#About {background-color: orange;}
+</style>
 </head>
 <body>
     <h1>Informācijas daudzuma mērvienības</h1>
+    <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+    <button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
+    <button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+    <button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+        <p>Home is where the heart is..</p>
+    </div>
     <form>
         <p><div><input type="text" name="gb">GB=</div></p>
-        <p><div><input type="submit" value="Izteikt megabaitos"><input type="text" name="mb">MB</div></p>
-        
-        <p><div><input type="submit" value="Izteikt mibibaitos"><input type="text" name="mib">MiB</div></p>
+        <p><div><input type="button" value="Izteikt megabaitos" onclick="mb.value=Number(gb.value)*(1000)"><input type="text" name="mb">MB</div></p>
+        <p><div><input type="button" value="Izteikt mibibaitos" onclick="mib.value=Number(gb.value)*(953.674316)"><input type="text" name="mib">MiB</div></p>
     </form>
+    <script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 </body>
 </html>
